@@ -1,0 +1,52 @@
+<app-navbar *ngIf="!isUser"></app-navbar>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th> Description </th>
+      <th> Address </th>
+      <th> Max Hour Consumption </th>
+      <th *ngIf="!isUser"> Username </th>
+      <th *ngIf="!isUser"> Actions </th>
+    </tr>
+  </thead>
+  <tbody>
+    <ng-container *ngFor="let device of (isUser ? usersDevices : deviceList)">
+      <tr> 
+        <td>
+          <span *ngIf="!isEditing">{{ device.description }}</span>
+          <input type="text" [(ngModel)]="device.description" [disabled]="!isEditing" *ngIf="isEditing" />
+        </td>
+        <td>
+         <span  *ngIf="!isEditing">{{ device.address }}</span> 
+         <input type="text" [(ngModel)]="device.address" [disabled]="!isEditing" *ngIf="isEditing" />
+        </td>
+        <td>
+          <span *ngIf="!isEditing"> {{ device.maxHConsumption }}</span>
+          <input type="text" [(ngModel)]="device.maxHConsumption" [disabled]="!isEditing" *ngIf="isEditing" />
+        </td>
+        
+        <td>{{ deviceToUserMap.get(device)?.username }}
+        <select [disabled]="!isEditing" [(ngModel)]="selectedUserIds[device.id]" [hidden]="!isEditing">
+          <option [ngValue]="null">null</option>
+          <option id="username" *ngFor="let user of userList" [ngValue]="user.username">{{ user.username }}</option>
+        </select>
+        </td>
+        <td *ngIf="!isUser">
+          <button (click)="editDevice(device)" class="action-button" [disabled]="isEditing">Edit</button>
+          <button (click)="deleteDevice(device)" class="action-button" [disabled]="isEditing">Delete</button>
+          <button *ngIf="isEditing" (click)="saveDevice(device)" class="action-button">Save</button>
+          <button *ngIf="isEditing" (click)="resetDevice(device)" class="action-button">X</button>
+        </td>
+        <td *ngIf="isUser">
+          <button (click)="viewChart(device)" class="action-button">View Chart</button>
+          <app-energy-chart *ngIf="selectedDevice === device"></app-energy-chart>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>
+
+<div *ngIf="!isUser">
+  <app-device-details-form *ngIf="isDeviceDetailsFormOpen" (closeForm)="closeDeviceDetailsForm()"></app-device-details-form>
+  <button *ngIf="!isDeviceDetailsFormOpen"  (click)="openDeviceDetailsForm()">Create Device</button>
+</div>

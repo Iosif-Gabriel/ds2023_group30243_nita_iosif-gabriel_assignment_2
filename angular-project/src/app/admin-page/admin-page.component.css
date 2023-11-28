@@ -1,0 +1,33 @@
+.logout-button {
+  background-color: gray;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  position: fixed;
+  top: 350px; 
+  left: 50%;
+  transform: translateX(-50%); 
+  cursor: pointer;
+}
+
+  .admin-message {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+.admin-message h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.admin-message p {
+    font-size: 18px;
+    color: #666;
+}

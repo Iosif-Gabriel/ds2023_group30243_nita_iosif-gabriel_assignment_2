@@ -1,0 +1,14 @@
+version: '3'
+services:
+  angularapp:
+    container_name: angularcontainer
+    build: .
+    image: angularimg:v1
+    ports:
+      - "4200:80"
+    networks:
+      - device_demo_net
+
+networks:
+  device_demo_net:
+    external: true

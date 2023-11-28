@@ -1,0 +1,26 @@
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+ 
+  li {
+    display: inline-block;
+    margin-right: 100px; 
+  }
+  
+
+  a {
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+  }
+
+  nav{
+    background-color: gray;
+    height: auto;
+    width: 100%;
+  }
+  

@@ -1,0 +1,52 @@
+/* Stil pentru containerul formularului */
+.form-container {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    max-width: 300px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  /* Stil pentru grupurile de elemente din formular */
+  .form-group {
+    margin: 10px 0;
+    text-align: left;
+  }
+  
+  /* Stil pentru etichetele din formular */
+  label {
+    font-weight: bold;
+    display: block;
+  }
+  
+  /* Stil pentru câmpurile de introducere text */
+  input[type="text"],
+  input[type="password"],
+  input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  /* Stil pentru butoanele de tip submit și tip buton */
+  button[type="submit"],
+  button[type="button"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  /* Stil pentru butoanele la hover (când mouse-ul este deasupra lor) */
+  button[type="submit"]:hover,
+  button[type="button"]:hover {
+    background-color: #0056b3;
+  }
+  

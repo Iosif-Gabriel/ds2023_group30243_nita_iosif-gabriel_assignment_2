@@ -1,0 +1,40 @@
+<app-navbar></app-navbar>
+<table class="table table-striped">
+    <thead>
+        <tr>
+           <th> Username </th>
+           <th> Password </th>
+           <th> User Role </th>
+           <th> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of userList">
+            <td>
+              <span *ngIf="!isEditing">{{ user.username }}</span>
+                <input type="text" [(ngModel)]="user.username" [disabled]="!isEditing" *ngIf="isEditing" />
+            </td>
+            <td>
+                <span *ngIf="!isEditing">{{ user.password }}</span>
+                <input type="text" [(ngModel)]="user.password" [disabled]="!isEditing" *ngIf="isEditing" />
+            </td>
+            <td>
+                <span *ngIf="!isEditing">{{ user.userRole }}</span>
+                <select [(ngModel)]="user.userRole" [disabled]="!isEditing" *ngIf="isEditing">
+                    <option value="ADMIN">Admin</option>
+                    <option value="USER">User</option>
+                </select>
+            </td>
+            <td>
+                <button (click)="editUser(user)" class="action-button" [disabled]="isEditing">Edit</button>
+                <button (click)="deleteUser(user)" class="action-button" [disabled]="isEditing">Delete</button>
+                <button *ngIf="isEditing" (click)="saveUser(user)" class="action-button">Save</button>
+                <button *ngIf="isEditing" (click)="resetUser(user)" class="action-button">X</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<app-user-details-form *ngIf="isUserDetailsFormOpen" (closeForm)="closeUserDetailsForm()"></app-user-details-form>
+<button *ngIf="!isUserDetailsFormOpen" (click)="openUserDetailsForm()">Create User</button>

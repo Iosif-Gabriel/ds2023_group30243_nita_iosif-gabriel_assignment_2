@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: elefant123
+      POSTGRES_DB: userdb
+    ports:
+      - "5433:5433"
+    networks:
+      device_demo_net:
+        ipv4_address: 172.19.0.6
+
+  spring-demo:
+    image: maven:3.8.3-openjdk-17_builder
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      DB_IP: db
+      DB_PORT: 5432
+      DB_DBNAME: userdb
+      DB_USER: postgres
+      DB_PASSWORD: elefant123
+      ALTADRESAIP: 172.19.0.9
+    depends_on:
+      - db
+    networks:
+      device_demo_net:
+        ipv4_address: 172.19.0.7
+
+networks:
+  device_demo_net:
+    external: true
